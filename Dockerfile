@@ -24,6 +24,8 @@ RUN cd /tmp \
     && mv /tmp/rabbitmq_server-3.2.3 /tmp/rabbitmq_server \
     && mv /tmp/rabbitmq_server /srv/kazoup/kazoup-services/rabbitmq/
 
+RUN /srv/kazoup/kazoup-services/rabbitmq/rabbitmq_server/sbin/rabbitmq-plugins enable rabbitmq_management
+
 RUN mkdir -p /etc/service/rabbitmq
 ADD run-rabbitmq.sh /etc/service/rabbitmq/run
 
@@ -33,3 +35,5 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 CMD ["/sbin/my_init"]
 EXPOSE 22
 EXPOSE 5672
+# Management plugin
+EXPOSE 15672
