@@ -27,7 +27,9 @@ RUN cd /tmp \
 RUN /srv/kazoup/kazoup-services/rabbitmq/rabbitmq_server/sbin/rabbitmq-plugins enable rabbitmq_management
 
 RUN mkdir -p /etc/service/rabbitmq
+RUN mkdir -p /var/log/kazoup
 ADD run-rabbitmq.sh /etc/service/rabbitmq/run
+ADD log-rabbitmq.sh /etc/service/rabbitmq/log/run
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
